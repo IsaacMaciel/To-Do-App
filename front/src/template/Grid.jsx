@@ -14,5 +14,5 @@ export default (props) => {
     }
 
     const gridClasses = toCssClasses(props.cols || 12);
-    return <div className={gridClasses}>{props.children}</div>;
+    return <div className={gridClasses + ' d-flex'}>{props.children}</div>;
 };

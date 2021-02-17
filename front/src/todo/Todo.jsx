@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 const URL = "http://localhost:5000/api/todos";
 
-export default (props) => {
+const Todo =  (props) => {
     const [description, setDescription] = useState("");
     const [list, setList] = useState([]);
 
@@ -80,3 +80,4 @@ export default (props) => {
         </div>
     );
 };
+export default Todo;
