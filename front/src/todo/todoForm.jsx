@@ -1,20 +1,25 @@
 import React, { useEffect } from "react";
 import Grid from "../template/Grid";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import IconButton from "../template/IconButton";
 
-import { changeDescription, addTask, searchTask } from "../reducers/todo/actions";
+import {
+  changeDescription,
+  addTask,
+  searchTask,
+} from "../reducers/todo/actions";
+import selectors from "../reducers/selectors";
 
-const TodoForm = ({ todo, dispatch, handleAdd, handleSearch }) => {
-  const { description } = todo;
-  console.log(todo);
+const TodoForm = ({ handleSearch }) => {
+  const { description } = useSelector(selectors.getTodo);
+  const dispatch = useDispatch();
 
-  const addToDo = task => {
-      dispatch(addTask(task));
-  }
+  const addToDo = (task) => {
+    dispatch(addTask(task));
+  };
   useEffect(() => {
-    dispatch(searchTask()); 
-  },[])
+    dispatch(searchTask());
+  }, []);
 
   return (
     <div role="form" className="todoForm">
@@ -28,7 +33,11 @@ const TodoForm = ({ todo, dispatch, handleAdd, handleSearch }) => {
         />
 
         <Grid cols="12 3 2">
-          <IconButton style="primary" icon="plus" onClick={() => addToDo(description)} />
+          <IconButton
+            style="primary"
+            icon="plus"
+            onClick={() => addToDo(description)}
+          />
           <IconButton
             style="info"
             icon="search"
@@ -40,5 +49,4 @@ const TodoForm = ({ todo, dispatch, handleAdd, handleSearch }) => {
   );
 };
 
-const mapStateToProps = (state) => ({ todo: state.todo });
-export default connect(mapStateToProps)(TodoForm);
+export default TodoForm;
