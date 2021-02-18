@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Grid from "../template/Grid";
 import { connect } from "react-redux";
 import IconButton from "../template/IconButton";
 
-import { changeDescription, addTask } from "../reducers/todo/actions";
+import { changeDescription, addTask, searchTask } from "../reducers/todo/actions";
 
 const TodoForm = ({ todo, dispatch, handleAdd, handleSearch }) => {
   const { description } = todo;
+  console.log(todo);
 
   const addToDo = task => {
-      dispatch(addTask(task))
-      dispatch(changeDescription(''))
+      dispatch(addTask(task));
   }
+  useEffect(() => {
+    dispatch(searchTask()); 
+  },[])
 
   return (
     <div role="form" className="todoForm">

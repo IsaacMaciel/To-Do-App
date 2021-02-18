@@ -27,11 +27,9 @@ export default (state = INITIAL_STATE, action) => {
       const newList = state.list.filter((task) => task._id !== action.payload);
       return { ...state, list: newList };
 
-    // case todoTypes.SEARCH_TASK:
-    //   const listSearch = state.list.filter((element) =>
-    //     element.task.includes(action.payload.toLowerCase())
-    //   );
-    //   return { ...state, listSearch };
+    case todoTypes.SEARCH_TASK:
+      return state;
+
     default:
       return state;
   }
